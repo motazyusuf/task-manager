@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/core/configs/theme/app_colors.dart';
 import 'package:task_manager/core/constants/strings.dart';
+import 'package:task_manager/features/tasks/presentation/pages/tasks_screen.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -12,10 +13,7 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    Center(child: Text("News Screen", style: TextStyle(fontSize: 24))),
-    Center(child: Text("Tasks Screen", style: TextStyle(fontSize: 24))),
-  ];
+  final List<Widget> _screens = [TasksScreen(), Placeholder()];
 
   @override
   Widget build(BuildContext context) {
