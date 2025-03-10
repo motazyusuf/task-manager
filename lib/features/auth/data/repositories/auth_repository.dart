@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
 
 import '../../../../core/failure/failure.dart';
+import '../../../tasks/data/models/task_model.dart';
 
 class AuthRepository {
   final FirebaseAuth _firebaseAuthInstance = FirebaseAuth.instance;
@@ -41,7 +42,7 @@ class AuthRepository {
   Future<void> openBox() async {
     final User? user = FirebaseAuth.instance.currentUser;
     try {
-      await Hive.openBox<Task>(user!.uid);
+      await Hive.openBox<TaskModel>(user!.uid);
     } catch (e) {
       print('Error opening Hive box: $e');
     }

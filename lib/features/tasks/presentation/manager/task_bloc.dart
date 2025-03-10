@@ -33,7 +33,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
 // for the LoadTask
 class _UpdateTasks extends TaskEvent {
-  final List<Task> tasks;
+  final List<TaskModel> tasks;
 
   _UpdateTasks(this.tasks);
 }

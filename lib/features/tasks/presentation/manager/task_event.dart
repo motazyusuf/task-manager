@@ -6,7 +6,7 @@ sealed class TaskEvent {}
 class LoadTasks extends TaskEvent {}
 
 class AddTask extends TaskEvent {
-  final Task task;
+  final TaskModel task;
 
   AddTask(this.task);
 }

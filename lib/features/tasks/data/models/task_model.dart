@@ -1,11 +1,11 @@
-class Task {
+class TaskModel {
   String name;
   String description;
 
-  Task({required this.name, required this.description});
+  TaskModel({required this.name, required this.description});
 
-  factory Task.fromJson(Map<String, dynamic> json) {
-    return Task(
+  factory TaskModel.fromJson(Map<String, dynamic> json) {
+    return TaskModel(
       name: json['name'],
       description: json['description'],
     );

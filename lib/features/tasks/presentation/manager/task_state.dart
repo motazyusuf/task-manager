@@ -6,7 +6,7 @@ sealed class TaskState {}
 class TaskLoading extends TaskState {}
 
 class TaskLoaded extends TaskState {
-  final List<Task> tasks;
+  final List<TaskModel> tasks;
 
   TaskLoaded(this.tasks);
 }

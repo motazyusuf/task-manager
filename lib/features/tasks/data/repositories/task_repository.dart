@@ -4,17 +4,18 @@ import '../models/task_model.dart';
 
 class TaskRepository {
   final String id;
-  late Box<Task> taskBox;
+  late Box<TaskModel> taskBox;
 
   TaskRepository(this.id) {
-    taskBox = Hive.box<Task>(id);
+    print("I am here");
+    taskBox = Hive.box<TaskModel>(id);
   }
 
-  Stream<List<Task>> getTasks() {
+  Stream<List<TaskModel>> getTasks() {
     return taskBox.watch().map((event) => taskBox.values.toList());
   }
 
-  Future<void> addTask(Task task) async {
+  Future<void> addTask(TaskModel task) async {
     await taskBox.put(task.name, task);
   }
 
