@@ -59,7 +59,6 @@ class LoginScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                verticalSpace(80),
                 AdditionalLoginMethod(
                   iconPath: MyAssets.googleIcon,
                   methodName: "Continue With Google",
