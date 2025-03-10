@@ -1,15 +1,18 @@
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../../../core/failure/failure.dart';
 
 class AuthRepository {
   final FirebaseAuth _firebaseAuthInstance = FirebaseAuth.instance;
   final GoogleSignIn _googleAuthInstance = GoogleSignIn();
 
-  Future<User?> signInWithGoogle() async {
+  Future<Either<Failure, User?>> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser =
           await _googleAuthInstance.signIn();
-      if (googleUser == null) return null;
+      if (googleUser == null) return const Right(null);
 
       // Get Authentication Tokens
       final GoogleSignInAuthentication googleAuth =
@@ -25,10 +28,14 @@ class AuthRepository {
           await _firebaseAuthInstance.signInWithCredential(credential);
 
       // User details
-      return userCredential.user;
+      return Right(userCredential.user);
     } catch (e) {
-      print("Error signing in: $e");
-      return null;
+      return Left(Failure(errorMessage: e.toString()));
     }
   }
+
+// Future<void> signOut() async {
+//   await _googleAuthInstance.signOut();
+//   await _firebaseAuthInstance.signOut();
+// }
 }

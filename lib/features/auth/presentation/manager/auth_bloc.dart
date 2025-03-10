@@ -12,15 +12,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc({required this.authRepository}) : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
-      try {
         emit(AuthLoading());
-        final User? user = await authRepository.signInWithGoogle();
-        if (user != null) {
-          emit(SignInSuccess(user));
+      final result = await authRepository.signInWithGoogle();
+      result.fold((left) {
+        emit(SignInFail(left.errorMessage));
+      }, (right) {
+        if (right != null) {
+          emit(SignInSuccess(right));
+        } else {
+          emit(UserCancelled());
         }
-      } catch (e) {
-        print(e);
-      }
+      });
     });
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_manager/features/auth/presentation/manager/auth_bloc.dart';
 
 import '../../../../core/configs/theme/app_colors.dart';
+import '../../../../core/services/my_functions.dart';
 
 class AdditionalLoginMethod extends StatelessWidget {
   AdditionalLoginMethod(
@@ -22,6 +23,10 @@ class AdditionalLoginMethod extends StatelessWidget {
         if (state is SignInSuccess) {
           print(">>>>>>>>>>>Signed in<<<<<<<<<<<<<");
           print(state.user.displayName);
+        } else if (state is SignInFail) {
+          MyFunctions.showFailSnackbar(context, state.error);
+        } else if (state is UserCancelled) {
+          print("User Cancelled");
         }
       },
       builder: (context, state) {
