@@ -21,7 +21,7 @@ class TasksScreen extends StatelessWidget {
         body: BlocBuilder<TaskBloc, TaskState>(
           builder: (context, state) {
             if (state is TaskLoading) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is TaskLoaded) {
               final tasks = state.tasks;
               return ListView.builder(
@@ -50,7 +50,7 @@ class TasksScreen extends StatelessWidget {
                 TaskModel(name: "New Task", description: "Task description");
             context.read<TaskBloc>().add(AddTask(task));
           },
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
       ),
     );

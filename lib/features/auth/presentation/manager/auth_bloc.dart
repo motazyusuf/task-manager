@@ -10,7 +10,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository = AuthRepository();
 
-  AuthBloc() : super(AuthInitial()) {
+  AuthBloc() : super(AuthLoading()) {
     on<AuthEvent>((event, emit) async {
         emit(AuthLoading());
       final result = await authRepository.signInWithGoogle();
