@@ -8,7 +8,7 @@ import '../../../../core/configs/theme/app_colors.dart';
 import '../../../../core/services/my_functions.dart';
 
 class AdditionalLoginMethod extends StatelessWidget {
-  AdditionalLoginMethod(
+  const AdditionalLoginMethod(
       {super.key,
       required this.iconPath,
       required this.methodName,

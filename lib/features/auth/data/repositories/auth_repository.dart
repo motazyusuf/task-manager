@@ -43,7 +43,6 @@ class AuthRepository {
     try {
       await Hive.openBox(user!.uid);
     } catch (e) {
-      // Handle box opening errors.
       print('Error opening Hive box: $e');
     }
   }

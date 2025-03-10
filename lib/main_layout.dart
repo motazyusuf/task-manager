@@ -15,10 +15,12 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
   final List<Widget> _screens = [TasksScreen(), Placeholder()];
+
   @override
   Widget build(BuildContext context) {
     final User? user = FirebaseAuth.instance.currentUser;
-    Hive.box(user!.uid);
+    var box = Hive.box(user!.uid);
+    box.values;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
