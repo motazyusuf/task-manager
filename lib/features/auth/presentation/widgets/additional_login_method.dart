@@ -22,7 +22,8 @@ class AdditionalLoginMethod extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
-          Navigator.pushNamed(context, PagesRoutes.mainLayout,
+          Navigator.pushNamedAndRemoveUntil(
+              context, PagesRoutes.mainLayout, (_) => false,
               arguments: state.user);
         } else if (state is SignInFail) {
           MyFunctions.showFailSnackbar(context, state.error);

@@ -3,7 +3,6 @@ class MyStrings {
 
 
   // Auth
-
   static const String emailAddress = "Email Address";
   static const String password = "Password";
   static const String requiredField = "This Field is required";
@@ -16,4 +15,7 @@ class MyStrings {
   static const String createOne = "Create One";
   static const String resetEmailSent = "Reset email sent to";
   static const String signInWithFacebook = "Reset email sent to";
+
+  // MainLayout
+  static const String myTaskManager = "Task Manager";
 }
