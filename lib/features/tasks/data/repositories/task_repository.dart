@@ -3,9 +3,14 @@ import 'package:hive/hive.dart';
 import '../models/task_model.dart';
 
 class TaskRepository {
-  final Box<Task> taskBox = Hive.box<Task>('tasksBox');
+  final String id;
+  late Box<Task> taskBox;
 
-  Stream<List<Task>> watchTasks() {
+  TaskRepository(this.id) {
+    taskBox = Hive.box<Task>(id);
+  }
+
+  Stream<List<Task>> getTasks() {
     return taskBox.watch().map((event) => taskBox.values.toList());
   }
 
