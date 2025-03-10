@@ -1,6 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:task_manager/core/configs/theme/app_colors.dart';
 import 'package:task_manager/core/constants/strings.dart';
 import 'package:task_manager/features/tasks/presentation/pages/tasks_screen.dart';
@@ -18,9 +16,6 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final User? user = FirebaseAuth.instance.currentUser;
-    var box = Hive.box(user!.uid);
-    box.values;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

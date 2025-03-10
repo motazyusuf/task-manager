@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   verticalSpace(20),
-                  AdditionalLoginMethod(
+                  const AdditionalLoginMethod(
                     iconPath: MyAssets.googleIcon,
                     methodName: "Continue With Google",
                   ),
