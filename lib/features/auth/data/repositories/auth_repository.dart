@@ -9,6 +9,7 @@ class AuthRepository {
   final GoogleSignIn _googleAuthInstance = GoogleSignIn();
 
   Future<Either<Failure, User?>> signInWithGoogle() async {
+    await _googleAuthInstance.signOut();
     try {
       final GoogleSignInAccount? googleUser =
           await _googleAuthInstance.signIn();

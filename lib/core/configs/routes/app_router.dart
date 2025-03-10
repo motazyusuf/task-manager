@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/core/configs/routes/pages_routes.dart';
+import 'package:task_manager/main_layout.dart';
 
 import '../../../features/auth/presentation/pages/login_screen.dart';
 
@@ -12,6 +13,9 @@ class AppRouter {
       case PagesRoutes.login:
         return MaterialPageRoute(
             builder: (context) => LoginScreen(), settings: settings);
+      case PagesRoutes.mainLayout:
+        return MaterialPageRoute(
+            builder: (context) => MainLayout(), settings: settings);
 
       default:
         return MaterialPageRoute(builder: (context) => const Placeholder()
