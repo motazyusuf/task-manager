@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_manager/core/configs/routes/pages_routes.dart';
 import 'package:task_manager/features/auth/presentation/manager/auth_bloc.dart';
 
 import '../../../../core/configs/theme/app_colors.dart';
@@ -21,12 +22,13 @@ class AdditionalLoginMethod extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
-          print(">>>>>>>>>>>Signed in<<<<<<<<<<<<<");
-          print(state.user.displayName);
+          Navigator.pushNamedAndRemoveUntil(
+              context, PagesRoutes.mainLayout, (_) => false,
+              arguments: state.user);
         } else if (state is SignInFail) {
           MyFunctions.showFailSnackbar(context, state.error);
-        } else if (state is UserCancelled) {
-          print("User Cancelled");
+        } else if (state is AuthLoading) {
+          MyFunctions.showLoading(context);
         }
       },
       builder: (context, state) {
