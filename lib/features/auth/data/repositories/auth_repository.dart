@@ -24,7 +24,7 @@ class AuthRepository {
       final UserCredential userCredential =
           await _firebaseAuthInstance.signInWithCredential(credential);
 
-      //User details
+      // User details
       return userCredential.user;
     } catch (e) {
       print("Error signing in: $e");
