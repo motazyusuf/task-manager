@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_manager/core/constants/constants.dart';
 
 import '../../../../core/configs/theme/text_theme.dart';
 import '../../../../core/constants/assets.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../../core/services/my_functions.dart';
 import '../../../../core/widgets/space.dart';
+import '../../data/repositories/auth_repository.dart';
 import '../widgets/additional_login_method.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -52,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 verticalSpace(20),
                 ElevatedButton(
-                  onPressed: () async {},
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(minimumSize: Size(100, 50.h)),
                   child: const Text(
                     MyStrings.signIn,
