@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive/hive.dart';
 
 import '../../../../core/failure/failure.dart';
 
@@ -28,10 +29,22 @@ class AuthRepository {
       final UserCredential userCredential =
           await _firebaseAuthInstance.signInWithCredential(credential);
 
+      await openBox();
+
       // User details
       return Right(userCredential.user);
     } catch (e) {
       return Left(Failure(errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> openBox() async {
+    final User? user = FirebaseAuth.instance.currentUser;
+    try {
+      await Hive.openBox(user!.uid);
+    } catch (e) {
+      // Handle box opening errors.
+      print('Error opening Hive box: $e');
     }
   }
 
