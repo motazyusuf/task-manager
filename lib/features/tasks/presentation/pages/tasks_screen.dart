@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_manager/core/configs/theme/app_colors.dart';
 
 import '../../data/models/task_model.dart';
 import '../manager/task_bloc.dart';
+import '../widgets/my_list_tile.dart';
 
 class TasksScreen extends StatefulWidget {
   TasksScreen({super.key});
@@ -49,19 +49,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           itemCount: tasks.length,
                           itemBuilder: (context, index) {
                             final task = tasks[index];
-                            return ListTile(
-                              tileColor: MyColors.primary,
-                              title: Text(task.name),
-                              subtitle: Text(task.description),
-                              trailing: IconButton(
-                                  icon: const Icon(Icons.delete,
-                                      color: Colors.red),
-                                  onPressed: () {
-                                    context
-                                        .read<TaskBloc>()
-                                        .add(DeleteTask(task.name));
-                                  }),
-                            );
+                            return MyListTile(task: task);
                           },
                         ),
                 ),
@@ -69,7 +57,7 @@ class _TasksScreenState extends State<TasksScreen> {
             );
           } else {
             return const Center(
-              child: Text("NO items"),
+              child: CircularProgressIndicator(),
             );
           }
         },
