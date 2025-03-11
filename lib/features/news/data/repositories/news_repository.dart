@@ -1,16 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:task_manager/core/constants/constants.dart';
 
 class NewsRepository {
-  final dio = Dio();
+  final _dio = Dio();
 
   void request() async {
     Response response;
-    response = await dio.get(
-      'https://newsapi.org/v2/top-headlines',
-      queryParameters: {
-        'apiKey': '895cfa022c0c4ddfb96dc6f94696a914',
-        'country': 'us'
-      },
+    response = await _dio.get(
+      MyConstants.baseURL,
+      queryParameters: {'apiKey': MyConstants.apiKey, 'country': MyConstants.q},
     );
     print(response.data.toString());
   }

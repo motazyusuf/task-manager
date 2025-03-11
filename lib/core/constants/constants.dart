@@ -1,5 +1,7 @@
 class MyConstants {
-  static const baseURL = "api.weatherapi.com";
-  static const aiBaseURL = '10.0.2.2:5001';
-  static const apiKey = "e723bf27c4cd4668be5190731251502";
+  MyConstants._();
+
+  static const baseURL = "https://newsapi.org/v2/top-headlines";
+  static const apiKey = "895cfa022c0c4ddfb96dc6f94696a914";
+  static const q = "us";
 }
