@@ -10,19 +10,19 @@ part 'task_state.dart';
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
   final TaskRepository taskRepository;
 
-  TaskBloc(this.taskRepository) : super(TaskLoading()) {
+  TaskBloc(this.taskRepository) : super(TaskInitial()) {
     on<LoadTasks>((event, emit) {
       taskRepository.getTasks().listen((tasks) {
         add(_UpdateTasks(tasks)); // Internally updating state
       });
     });
 
-    on<AddTask>((event, emit) async {
-      await taskRepository.addTask(event.task);
+    on<AddTask>((event, emit) {
+      taskRepository.addTask(event.task);
     });
 
-    on<DeleteTask>((event, emit) async {
-      await taskRepository.deleteTask(event.name);
+    on<DeleteTask>((event, emit) {
+      taskRepository.deleteTask(event.name);
     });
 
     on<_UpdateTasks>((event, emit) {

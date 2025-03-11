@@ -27,7 +27,7 @@ class AdditionalLoginMethod extends StatelessWidget {
               arguments: state.user);
         } else if (state is SignInFail) {
           MyFunctions.showFailSnackbar(context, state.error);
-        } else if (state is AuthLoading) {
+        } else if (state is AuthInitial) {
           MyFunctions.showLoading(context);
         }
       },
