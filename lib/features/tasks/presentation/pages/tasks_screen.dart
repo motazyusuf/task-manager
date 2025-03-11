@@ -101,8 +101,8 @@ class _TasksScreenState extends State<TasksScreen> {
                   TaskModel task = TaskModel(
                       name: nameController.text,
                       description: descriptionController.text);
-                  // BlocProvider.of<TaskBloc>(context).add(AddTask(task));
                   parentContext.read<TaskBloc>().add(AddTask(task));
+                  Navigator.pop(context);
                 },
                 child: Text("OK"),
               ),
