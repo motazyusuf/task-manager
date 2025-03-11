@@ -71,7 +71,7 @@ A Flutter mobile application that combines **Task Management** and **News API in
 
 | Task Management | News API | Google Auth |
 |----------------|---------|------------|
-| ![Tasks](https://github.com/user-attachments/assets/61af47c0-4909-400c-b635-3264c0455325) | ![News](https://github.com/user-attachments/assets/5a1536fe-4dba-46f7-9344-1ff14782cba5) | ![Auth](https://github.com/user-attachments/assets/1664c3d8-abe1-423d-b083-ecc88c9fc52e) |
+| (https://github.com/user-attachments/assets/61af47c0-4909-400c-b635-3264c0455325) | (https://github.com/user-attachments/assets/5a1536fe-4dba-46f7-9344-1ff14782cba5) | (https://github.com/user-attachments/assets/1664c3d8-abe1-423d-b083-ecc88c9fc52e) |
 
 ---
 
