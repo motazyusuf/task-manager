@@ -14,11 +14,10 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen> {
   late Articles articles;
 
-  @override
-  void initState() {
-    context.read<NewsBloc>().add(LoadNews());
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
