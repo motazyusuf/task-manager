@@ -8,9 +8,9 @@ part 'task_event.dart';
 part 'task_state.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
-  final TaskRepository taskRepository;
+  final TaskRepository taskRepository = TaskRepository();
 
-  TaskBloc(this.taskRepository) : super(TaskInitial()) {
+  TaskBloc() : super(TaskInitial()) {
     on<LoadTasks>((event, emit) {
       taskRepository.getTasks().listen((tasks) {
         add(_UpdateTasks(tasks)); // Internally updating state
@@ -19,7 +19,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     on<AddTask>(onAddTask);
     on<DeleteTask>(onDelete);
-
     on<_UpdateTasks>((event, emit) {
       emit(TaskLoaded(event.tasks));
     });
