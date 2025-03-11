@@ -40,9 +40,8 @@ class AuthRepository {
   }
 
   Future<void> openBox() async {
-    final User? user = FirebaseAuth.instance.currentUser;
     try {
-      await Hive.openBox<TaskModel>(user!.uid);
+      await Hive.openBox<TaskModel>("User");
     } catch (e) {
       print('Error opening Hive box: $e');
     }

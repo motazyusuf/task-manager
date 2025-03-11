@@ -20,8 +20,7 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          TaskBloc(TaskRepository("EcCKyBpnNkPIekxU6I7Vavu88sA3")),
+      create: (context) => TaskBloc(TaskRepository()),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,

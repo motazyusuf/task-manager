@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,12 +13,10 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  final User? user = FirebaseAuth.instance.currentUser;
   var tasks = [];
 
   @override
   void initState() {
-    // TODO: implement initState
     BlocProvider.of<TaskBloc>(context).add(LoadTasks());
     super.initState();
   }
@@ -56,9 +53,7 @@ class _TasksScreenState extends State<TasksScreen> {
               ],
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const SizedBox();
           }
         },
       ),
