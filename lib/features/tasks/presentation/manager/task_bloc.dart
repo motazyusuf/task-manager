@@ -17,23 +17,29 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       });
     });
 
-    on<AddTask>((event, emit) {
-      taskRepository.addTask(event.task);
-    });
-
-    on<DeleteTask>((event, emit) {
-      taskRepository.deleteTask(event.name);
-    });
+    on<AddTask>(onAddTask);
+    on<DeleteTask>(onDelete);
 
     on<_UpdateTasks>((event, emit) {
       emit(TaskLoaded(event.tasks));
     });
   }
+
+  Future<void> onDelete(
+    DeleteTask event,
+    Emitter emit,
+  ) async {
+    taskRepository.deleteTask(event.name);
+  }
+
+  // Future<void> onLoadTask(event,emit) async {
+  //   taskRepository.getTasks().listen((tasks) {
+  //     add(_UpdateTasks(tasks)); // Internally updating state
+  //   });
+  // }
+
+  Future<void> onAddTask(event, emit) async {
+    taskRepository.addTask(event.task);
+  }
 }
 
-// for the LoadTask
-class _UpdateTasks extends TaskEvent {
-  final List<TaskModel> tasks;
-
-  _UpdateTasks(this.tasks);
-}

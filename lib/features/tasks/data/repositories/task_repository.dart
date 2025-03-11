@@ -11,10 +11,14 @@ class TaskRepository {
   }
 
   Stream<List<TaskModel>> getTasks() {
-    return taskBox.watch().map((event) => taskBox.values.toList());
+    return taskBox.watch().map((boxEvent) {
+      print("task items count is ${taskBox.length}");
+      return taskBox.values.toList();
+    });
   }
 
   Future<void> addTask(TaskModel task) async {
+    print("Adding task to Box name: ${taskBox.name}");
     await taskBox.put(task.name, task);
   }
 
