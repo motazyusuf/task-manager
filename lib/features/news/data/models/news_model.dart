@@ -1,8 +1,6 @@
 class Articles {
   final List<Article> articles;
-
   Articles({required this.articles});
-
 
   factory Articles.fromJson(Map<String, dynamic> json){
     return Articles(

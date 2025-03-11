@@ -17,7 +17,11 @@ class NewsRepository {
         },
       );
 
-      return Right(Articles.fromJson(response.data["articles"]));
+      if (response.statusCode == 200) {
+        return Right(Articles.fromJson(response.data));
+      } else {
+        return Left(Failure(errorMessage: response.statusCode.toString()));
+      }
     } on DioException catch (e) {
       return Left(Failure(errorMessage: e.message!));
     }

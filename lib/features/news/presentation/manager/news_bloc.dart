@@ -5,7 +5,6 @@ import 'package:task_manager/features/news/data/models/news_model.dart';
 import '../../data/repositories/news_repository.dart';
 
 part 'news_event.dart';
-
 part 'news_state.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
