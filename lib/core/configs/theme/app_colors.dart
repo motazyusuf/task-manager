@@ -21,7 +21,7 @@ class MyColors {
   static const onSecondBackgroundText = Color(0xFFEFEFEF);
   static const onSecondBackgroundIcon = Color(0xFFEFEFEF);
 
-  static const primaryAccent = Color(0xFF8e87c9);
+  static const primaryAccent = Color(0xfff24336);
   static const secondaryAccent = Color(0xFFf87c9f);
   static const complimentary = Color(0xffbccff9);
   static const active = Color(0xfff62660);

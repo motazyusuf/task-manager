@@ -8,7 +8,6 @@ import '../../../../core/constants/assets.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../../core/services/my_functions.dart';
 import '../../../../core/widgets/space.dart';
-import '../../data/repositories/auth_repository.dart';
 import '../widgets/additional_login_method.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -21,7 +20,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthBloc(authRepository: AuthRepository()),
+      create: (context) => AuthBloc(),
       child: Form(
         key: _formKey,
         child: Scaffold(
@@ -66,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   verticalSpace(20),
-                  AdditionalLoginMethod(
+                  const AdditionalLoginMethod(
                     iconPath: MyAssets.googleIcon,
                     methodName: "Continue With Google",
                   ),

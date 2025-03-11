@@ -8,7 +8,7 @@ import '../../../../core/configs/theme/app_colors.dart';
 import '../../../../core/services/my_functions.dart';
 
 class AdditionalLoginMethod extends StatelessWidget {
-  AdditionalLoginMethod(
+  const AdditionalLoginMethod(
       {super.key,
       required this.iconPath,
       required this.methodName,
@@ -19,7 +19,7 @@ class AdditionalLoginMethod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthBloc, AuthState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
           Navigator.pushNamedAndRemoveUntil(
@@ -27,32 +27,30 @@ class AdditionalLoginMethod extends StatelessWidget {
               arguments: state.user);
         } else if (state is SignInFail) {
           MyFunctions.showFailSnackbar(context, state.error);
-        } else if (state is AuthLoading) {
+        } else if (state is AuthInitial) {
           MyFunctions.showLoading(context);
         }
       },
-      builder: (context, state) {
-        return GestureDetector(
-          onTap: () {
-            BlocProvider.of<AuthBloc>(context).add(SignInEvent());
-          },
-          child: ListTile(
-            leading: Image.asset(iconPath),
-            title: Center(
-              child: Text(
-                methodName,
-                textAlign: TextAlign.center,
-              ),
+      child: GestureDetector(
+        onTap: () {
+          BlocProvider.of<AuthBloc>(context).add(SignInEvent());
+        },
+        child: ListTile(
+          leading: Image.asset(iconPath),
+          title: Center(
+            child: Text(
+              methodName,
+              textAlign: TextAlign.center,
             ),
-            tileColor: MyColors.secondBackground,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(100),
-            ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 15.w),
-            minVerticalPadding: 15.h,
           ),
-        );
-      },
+          tileColor: MyColors.secondBackground,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15.w),
+          minVerticalPadding: 15.h,
+        ),
+      ),
     );
   }
 }
