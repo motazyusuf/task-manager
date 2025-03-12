@@ -26,7 +26,7 @@ class FirebaseApi {
     return const NotificationDetails(
         iOS: DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
-          "channelId",
+          "taskManager",
           "channelName",
           importance: Importance.max,
           priority: Priority.high,
