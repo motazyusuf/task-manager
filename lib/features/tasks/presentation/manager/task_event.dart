@@ -17,6 +17,5 @@ class DeleteTask extends TaskEvent {
 
 class _UpdateTasks extends TaskEvent {
   final List<TaskModel> tasks;
-
   _UpdateTasks(this.tasks);
 }
