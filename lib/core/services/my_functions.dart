@@ -10,6 +10,7 @@ import 'package:task_manager/features/tasks/data/repositories/task_type_adapter.
 
 import '../../features/tasks/data/models/task_model.dart';
 import '../../features/tasks/presentation/widgets/add_task_bottom_sheet.dart';
+import '../../features/tasks/presentation/widgets/update_task_botom_sheet.dart';
 import '../../firebase_options.dart';
 import '../configs/theme/app_colors.dart';
 import 'bloc_observer.dart';
@@ -179,6 +180,20 @@ abstract class MyFunctions {
       ),
       builder: (context) {
         return AddTaskBottomSheet(parentContext: parentContext);
+      },
+    );
+  }
+
+  static void showEditTaskBottomSheet(
+      BuildContext parentContext, TaskModel task) {
+    showModalBottomSheet(
+      context: parentContext,
+      isScrollControlled: true, // Makes sheet full height
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) {
+        return UpdateTaskBottomSheet(parentContext: parentContext, task: task);
       },
     );
   }

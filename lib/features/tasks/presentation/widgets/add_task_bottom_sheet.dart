@@ -11,8 +11,8 @@ class AddTaskBottomSheet extends StatelessWidget {
   AddTaskBottomSheet({super.key, required this.parentContext});
 
   final BuildContext parentContext;
-  TextEditingController nameController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

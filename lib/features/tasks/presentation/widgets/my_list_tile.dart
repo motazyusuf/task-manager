@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task_manager/features/tasks/presentation/widgets/update_task_botom_sheet.dart';
 
 import '../../../../core/configs/theme/app_colors.dart';
+import '../../../../core/services/my_functions.dart';
 import '../../data/models/task_model.dart';
 import '../manager/task_bloc.dart';
 
@@ -29,7 +29,7 @@ class MyListTile extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.edit, size: 30.r, color: Colors.white60),
                 onPressed: () {
-                  _showEditTaskBottomSheet(context);
+                  MyFunctions.showEditTaskBottomSheet(context, task);
                 }),
             IconButton(
                 icon: Icon(Icons.delete, size: 30.r, color: Colors.red),
@@ -39,19 +39,6 @@ class MyListTile extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void _showEditTaskBottomSheet(BuildContext parentContext) {
-    showModalBottomSheet(
-      context: parentContext,
-      isScrollControlled: true, // Makes sheet full height
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (context) {
-        return UpdateTaskBottomSheet(parentContext: parentContext, task: task);
-      },
     );
   }
 }
