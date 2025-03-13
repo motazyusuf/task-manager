@@ -11,34 +11,28 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   final TaskRepository taskRepository = TaskRepository();
 
   TaskBloc() : super(TaskInitial()) {
-    on<LoadTasks>((event, emit) {
-      taskRepository.getTasks().listen((tasks) {
-        add(_UpdateTasks(tasks)); // Internally updating state
-      });
-    });
-
+    on<LoadTasks>(onLoadTask);
     on<AddTask>(onAddTask);
     on<DeleteTask>(onDelete);
-    on<_UpdateTasks>((event, emit) {
-      emit(TaskLoaded(event.tasks));
+    on<_UpdateTasks>(onUpdateTask);
+  }
+
+  Future<void> onDelete(event, emit) async {
+    await taskRepository.deleteTask(event.name);
+  }
+
+  Future<void> onLoadTask(event, emit) async {
+    emit(TaskLoaded(taskRepository.getTasks()));
+    taskRepository.streamTasks().listen((tasks) {
+      add(_UpdateTasks(tasks));
     });
   }
 
-  Future<void> onDelete(
-    DeleteTask event,
-    Emitter emit,
-  ) async {
-    taskRepository.deleteTask(event.name);
+  Future<void> onAddTask(event, emit) async {
+    await taskRepository.addTask(event.task);
   }
 
-  // Future<void> onLoadTask(event,emit) async {
-  //   taskRepository.getTasks().listen((tasks) {
-  //     add(_UpdateTasks(tasks)); // Internally updating state
-  //   });
-  // }
-
-  Future<void> onAddTask(event, emit) async {
-    taskRepository.addTask(event.task);
+  onUpdateTask(event, emit) {
+    emit(TaskLoaded(event.tasks));
   }
 }
-
