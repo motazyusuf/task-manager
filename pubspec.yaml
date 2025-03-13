@@ -33,6 +33,7 @@ dependencies:
   firebase_messaging: ^15.2.4
   firebase_analytics: ^11.4.4
   flutter_local_notifications: ^18.0.1
+  infinite_scroll_pagination: ^5.0.0
 
 
 
