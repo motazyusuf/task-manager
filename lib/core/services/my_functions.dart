@@ -184,8 +184,8 @@ abstract class MyFunctions {
     );
   }
 
-  static void showEditTaskBottomSheet(
-      BuildContext parentContext, TaskModel task) {
+  static void showEditTaskBottomSheet(BuildContext parentContext,
+      TaskModel task) {
     showModalBottomSheet(
       context: parentContext,
       isScrollControlled: true, // Makes sheet full height
@@ -198,42 +198,4 @@ abstract class MyFunctions {
     );
   }
 
-// static void showMessageBottomSheet(BuildContext context, bool suggestion) {
-//   showModalBottomSheet(
-//     context: context,
-//     builder: (context) {
-//       return Container(
-//         decoration: const BoxDecoration(
-//           color: MyColors.background,
-//           borderRadius: BorderRadius.only(
-//             topLeft: Radius.circular(20),
-//             topRight: Radius.circular(20),
-//           ),
-//         ),
-//         width: double.infinity,
-//         height: 200.h,
-//         padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 30.h),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.stretch,
-//           mainAxisSize: MainAxisSize.min,
-//           children: [
-//             Text(
-//               textAlign: TextAlign.center,
-//               suggestion ? MyStrings.goOut : MyStrings.doNotGoOut,
-//               style: MyTextStyle.onBackgroundBold32,
-//             ),
-//             verticalSpace(10),
-//             ElevatedButton(
-//               onPressed: () => Navigator.pop(context),
-//               child: Text(
-//                 MyStrings.close,
-//                 style: MyTextStyle.onSecondBackgroundBold16,
-//               ),
-//             ),
-//           ],
-//         ),
-//       );
-//     },
-//   );
-// }
 }
