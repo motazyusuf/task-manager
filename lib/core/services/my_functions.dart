@@ -166,7 +166,6 @@ abstract class MyFunctions {
     await Hive.openBox('settings');
     await Hive.openBox<TaskModel>("User");
   }
-
   static Future<void> backgroundHandler(RemoteMessage message) async {
     Firebase.initializeApp();
 
