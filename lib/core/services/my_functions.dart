@@ -1,7 +1,19 @@
+import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:task_manager/core/services/notification.dart';
+import 'package:task_manager/features/tasks/data/repositories/task_type_adapter.dart';
 
+import '../../features/tasks/data/models/task_model.dart';
+import '../../features/tasks/presentation/widgets/add_task_bottom_sheet.dart';
+import '../../features/tasks/presentation/widgets/update_task_botom_sheet.dart';
+import '../../firebase_options.dart';
 import '../configs/theme/app_colors.dart';
+import 'bloc_observer.dart';
 
 abstract class MyFunctions {
   static void showSuccessSnackbar(BuildContext context, String message) {
@@ -138,42 +150,52 @@ abstract class MyFunctions {
     Navigator.pop(context);
   }
 
-// static void showMessageBottomSheet(BuildContext context, bool suggestion) {
-//   showModalBottomSheet(
-//     context: context,
-//     builder: (context) {
-//       return Container(
-//         decoration: const BoxDecoration(
-//           color: MyColors.background,
-//           borderRadius: BorderRadius.only(
-//             topLeft: Radius.circular(20),
-//             topRight: Radius.circular(20),
-//           ),
-//         ),
-//         width: double.infinity,
-//         height: 200.h,
-//         padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 30.h),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.stretch,
-//           mainAxisSize: MainAxisSize.min,
-//           children: [
-//             Text(
-//               textAlign: TextAlign.center,
-//               suggestion ? MyStrings.goOut : MyStrings.doNotGoOut,
-//               style: MyTextStyle.onBackgroundBold32,
-//             ),
-//             verticalSpace(10),
-//             ElevatedButton(
-//               onPressed: () => Navigator.pop(context),
-//               child: Text(
-//                 MyStrings.close,
-//                 style: MyTextStyle.onSecondBackgroundBold16,
-//               ),
-//             ),
-//           ],
-//         ),
-//       );
-//     },
-//   );
-// }
+  static appSetup() async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    final appDocumentDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocumentDir.path);
+    await FirebaseApi().fcmNotifications();
+    FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
+    Hive.registerAdapter(TaskTypeAdapter());
+    Bloc.observer = MyBlocObserver();
+    await Hive.openBox('settings');
+    await Hive.openBox<TaskModel>("User");
+  }
+
+  static Future<void> _backgroundHandler(RemoteMessage message) async {
+    Firebase.initializeApp();
+  }
+
+  static void showAddTaskBottomSheet(BuildContext parentContext) {
+    showModalBottomSheet(
+      context: parentContext,
+      isScrollControlled: true, // Makes sheet full height
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) {
+        return AddTaskBottomSheet(parentContext: parentContext);
+      },
+    );
+  }
+
+  static void showEditTaskBottomSheet(BuildContext parentContext,
+      TaskModel task) {
+    showModalBottomSheet(
+      context: parentContext,
+      isScrollControlled: true, // Makes sheet full height
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) {
+        return UpdateTaskBottomSheet(parentContext: parentContext, task: task);
+      },
+    );
+  }
+
 }

@@ -5,11 +5,15 @@ import '../models/task_model.dart';
 class TaskRepository {
   late Box<TaskModel> taskBox = Hive.box<TaskModel>("User");
 
-  Stream<List<TaskModel>> getTasks() {
+  Stream<List<TaskModel>> streamTasks() {
     return taskBox.watch().map((boxEvent) {
       print("task items count is ${taskBox.length}");
       return taskBox.values.toList();
     });
+  }
+
+  List<TaskModel> getTasks() {
+    return taskBox.values.toList();
   }
 
   Future<void> addTask(TaskModel task) async {

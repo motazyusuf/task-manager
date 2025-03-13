@@ -4,7 +4,6 @@ import 'package:task_manager/core/configs/theme/app_colors.dart';
 import 'package:task_manager/core/constants/strings.dart';
 import 'package:task_manager/features/news/presentation/manager/news_bloc.dart';
 import 'package:task_manager/features/news/presentation/pages/news_screen.dart';
-import 'package:task_manager/features/tasks/data/repositories/task_repository.dart';
 import 'package:task_manager/features/tasks/presentation/manager/task_bloc.dart';
 import 'package:task_manager/features/tasks/presentation/pages/tasks_screen.dart';
 
