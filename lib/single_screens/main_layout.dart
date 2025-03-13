@@ -32,7 +32,8 @@ class _MainLayoutState extends State<MainLayout> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: MyColors.primary,
-          title: const Text(MyStrings.myTaskManager),
+          title: Text(
+              _currentIndex == 0 ? MyStrings.myTaskManager : MyStrings.news),
         ),
         body: _screens[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -48,11 +49,11 @@ class _MainLayoutState extends State<MainLayout> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.task),
-              label: "Tasks",
+              label: MyStrings.tasks,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.article),
-              label: "News",
+              label: MyStrings.news,
             ),
           ],
         ),
