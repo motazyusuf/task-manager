@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_manager/core/services/my_functions.dart';
 
-import '../../data/models/task_model.dart';
 import '../manager/task_bloc.dart';
 import '../widgets/my_list_tile.dart';
 
@@ -26,7 +26,7 @@ class _TasksScreenState extends State<TasksScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _showAddTaskBottomSheet(context);
+          MyFunctions.showAddTaskBottomSheet(context);
         },
         backgroundColor: Colors.red, // Change color
         child:
@@ -57,54 +57,6 @@ class _TasksScreenState extends State<TasksScreen> {
           }
         },
       ),
-    );
-  }
-
-  void _showAddTaskBottomSheet(BuildContext parentContext) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController descriptionController = TextEditingController();
-
-    showModalBottomSheet(
-      context: parentContext,
-      isScrollControlled: true, // Makes sheet full height
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 16,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 16),
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: "Task Name"),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                controller: descriptionController,
-                decoration: InputDecoration(labelText: "Task Description"),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  TaskModel task = TaskModel(
-                      name: nameController.text,
-                      description: descriptionController.text);
-                  parentContext.read<TaskBloc>().add(AddTask(task));
-                  Navigator.pop(context);
-                },
-                child: Text("OK"),
-              ),
-            ],
-          ),
-        );
-      },
     );
   }
 }

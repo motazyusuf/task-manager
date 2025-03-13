@@ -18,4 +18,10 @@ class MyStrings {
 
   // MainLayout
   static const String myTaskManager = "Task Manager";
+
+  // Tasks
+  static const String taskName = "Task Name";
+  static const String taskDescription = "Task Description";
+  static const String editTaskDescription = "Edit Task Description";
+  static const String ok = "OK";
 }

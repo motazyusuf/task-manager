@@ -9,6 +9,7 @@ import 'package:task_manager/core/services/notification.dart';
 import 'package:task_manager/features/tasks/data/repositories/task_type_adapter.dart';
 
 import '../../features/tasks/data/models/task_model.dart';
+import '../../features/tasks/presentation/widgets/add_task_bottom_sheet.dart';
 import '../../firebase_options.dart';
 import '../configs/theme/app_colors.dart';
 import 'bloc_observer.dart';
@@ -168,6 +169,20 @@ abstract class MyFunctions {
   static Future<void> _backgroundHandler(RemoteMessage message) async {
     Firebase.initializeApp();
   }
+
+  static void showAddTaskBottomSheet(BuildContext parentContext) {
+    showModalBottomSheet(
+      context: parentContext,
+      isScrollControlled: true, // Makes sheet full height
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) {
+        return AddTaskBottomSheet(parentContext: parentContext);
+      },
+    );
+  }
+
 // static void showMessageBottomSheet(BuildContext context, bool suggestion) {
 //   showModalBottomSheet(
 //     context: context,
