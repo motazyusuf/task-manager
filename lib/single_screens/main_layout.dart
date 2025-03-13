@@ -17,7 +17,10 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
-    TasksScreen(),
+    BlocProvider(
+      create: (context) => TaskBloc(),
+      child: TasksScreen(),
+    ),
     BlocProvider(
       create: (context) => NewsBloc(),
       child: NewsScreen(),
@@ -26,37 +29,34 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TaskBloc(),
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: MyColors.primary,
-          title: Text(
-              _currentIndex == 0 ? MyStrings.myTaskManager : MyStrings.news),
-        ),
-        body: _screens[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: MyColors.complimentary,
-          selectedItemColor: MyColors.primaryAccent,
-          backgroundColor: MyColors.primary,
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.task),
-              label: MyStrings.tasks,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.article),
-              label: MyStrings.news,
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: MyColors.primary,
+        title:
+            Text(_currentIndex == 0 ? MyStrings.myTaskManager : MyStrings.news),
+      ),
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: MyColors.complimentary,
+        selectedItemColor: MyColors.primaryAccent,
+        backgroundColor: MyColors.primary,
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.task),
+            label: MyStrings.tasks,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.article),
+            label: MyStrings.news,
+          ),
+        ],
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,7 +9,8 @@ import 'core/services/my_functions.dart';
 
 Future<void> main() async {
   await MyFunctions.appSetup();
-
+  final token = await FirebaseMessaging.instance.getToken();
+  debugPrint("Token: $token");
   runApp(const MyApp());
 }
 

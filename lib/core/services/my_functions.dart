@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
@@ -160,15 +161,28 @@ abstract class MyFunctions {
     final appDocumentDir = await getApplicationDocumentsDirectory();
     Hive.init(appDocumentDir.path);
     await FirebaseApi().fcmNotifications();
-    FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
     Hive.registerAdapter(TaskTypeAdapter());
     Bloc.observer = MyBlocObserver();
     await Hive.openBox('settings');
     await Hive.openBox<TaskModel>("User");
   }
 
-  static Future<void> _backgroundHandler(RemoteMessage message) async {
+  static Future<void> backgroundHandler(RemoteMessage message) async {
     Firebase.initializeApp();
+
+    final data = message.data;
+      FlutterLocalNotificationsPlugin().show(
+        message.messageId.hashCode,
+      data['title'] ?? message.notification!.title,
+      data['body'] ?? message.notification!.body,
+      const NotificationDetails(
+          android: AndroidNotificationDetails('taskManager', 'channelName',
+              importance: Importance.max,
+              priority: Priority.high,
+              icon: '@mipmap/ic_launcher'),
+          iOS: DarwinNotificationDetails(),
+        ),
+      );
   }
 
   static void showAddTaskBottomSheet(BuildContext parentContext) {
