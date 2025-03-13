@@ -167,16 +167,15 @@ abstract class MyFunctions {
     await Hive.openBox<TaskModel>("User");
   }
 
-  @pragma('vm:entry-point')
   static Future<void> backgroundHandler(RemoteMessage message) async {
     Firebase.initializeApp();
-    if (message.data.isNotEmpty) {
-      final data = message.data;
+
+    final data = message.data;
       FlutterLocalNotificationsPlugin().show(
         message.messageId.hashCode,
-        data['title'],
-        data['body'],
-        const NotificationDetails(
+      data['title'] ?? message.notification!.title,
+      data['body'] ?? message.notification!.body,
+      const NotificationDetails(
           android: AndroidNotificationDetails('taskManager', 'channelName',
               importance: Importance.max,
               priority: Priority.high,
@@ -184,7 +183,6 @@ abstract class MyFunctions {
           iOS: DarwinNotificationDetails(),
         ),
       );
-    }
   }
 
   static void showAddTaskBottomSheet(BuildContext parentContext) {
