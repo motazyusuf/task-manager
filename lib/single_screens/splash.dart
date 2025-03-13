@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:task_manager/core/constants/assets.dart';
 
-import 'core/configs/routes/pages_routes.dart';
+import '../core/configs/routes/pages_routes.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
