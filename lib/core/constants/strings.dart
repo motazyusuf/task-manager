@@ -14,7 +14,7 @@ class MyStrings {
   static const String doNotHaveAccount = "Don't have an account";
   static const String createOne = "Create One";
   static const String resetEmailSent = "Reset email sent to";
-  static const String signInWithFacebook = "Reset email sent to";
+  static const String continueWithGoogle = "Continue With Google";
 
   // MainLayout
   static const String myTaskManager = "Task Manager";
