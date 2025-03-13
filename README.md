@@ -29,6 +29,7 @@ A Flutter mobile application that combines **Task Management** and **News API in
 - **BLoC** (State Management)
 - **Repository Pattern** (Separation of Concerns)
 - **Firebase Authentication**
+- **Firebase Messaging**
 
 ---
 
