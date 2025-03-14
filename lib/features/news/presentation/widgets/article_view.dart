@@ -7,9 +7,9 @@ import 'package:task_manager/core/widgets/space.dart';
 import '../../data/models/news_model.dart';
 
 class ArticleView extends StatelessWidget {
-  const ArticleView({super.key, required this.article});
+  const ArticleView({super.key, required this.movie});
 
-  final Article article;
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,9 @@ class ArticleView extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               image: DecorationImage(
-                image: article.urlToImage != null
-                    ? NetworkImage(article.urlToImage!)
+                image: movie.image != null
+                    ? NetworkImage(
+                        "https://image.tmdb.org/t/p/w500/${movie.image}")
                     : const AssetImage(MyAssets.placeHolderImage),
                 fit: BoxFit.cover,
               ),
@@ -33,7 +34,7 @@ class ArticleView extends StatelessWidget {
           ),
           verticalSpace(10),
           Text(
-            article.title,
+            movie.title!,
             style: MyTextStyle.onBackgroundBold24,
           ),
         ],

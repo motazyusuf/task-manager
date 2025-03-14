@@ -19,7 +19,7 @@ class _MainLayoutState extends State<MainLayout> {
   final List<Widget> _screens = [
     TasksScreen(),
     BlocProvider(
-      create: (context) => NewsBloc(),
+      create: (context) => NewsBloc()..add(GetNewsEvent()),
       child: NewsScreen(),
     )
   ];

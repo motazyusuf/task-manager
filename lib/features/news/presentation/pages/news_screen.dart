@@ -12,7 +12,7 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
-  late Articles articles;
+  late List<Movie> movies;
 
   // @override
   // void initState() {
@@ -21,23 +21,30 @@ class _NewsScreenState extends State<NewsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<NewsBloc>().add(LoadNews());
-
     return Scaffold(
       body: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
           if (state is NewsLoaded) {
-            articles = state.articles;
+            movies = state.movies;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: articles.articles.isEmpty
+                  child: movies.isEmpty
                       ? const SizedBox()
                       : ListView.builder(
-                          itemCount: articles.articles.length,
-                          itemBuilder: (context, index) =>
-                              ArticleView(article: articles.articles[index])),
+                          controller: context.read<NewsBloc>().scrollController,
+                          itemCount: movies.length,
+                          itemBuilder: (context, index) {
+                            if (index == movies.length - 1) {
+                              return const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child:
+                                    Center(child: CircularProgressIndicator()),
+                              );
+                            }
+                            return ArticleView(movie: movies[index]);
+                          }),
                 ),
               ],
             );
