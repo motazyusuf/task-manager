@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_manager/core/configs/theme/text_theme.dart';
 import 'package:task_manager/features/news/data/models/news_model.dart';
 import 'package:task_manager/features/news/presentation/manager/news_bloc.dart';
 import 'package:task_manager/features/news/presentation/widgets/article_view.dart';
-
-import '../../../../core/configs/theme/app_colors.dart';
 
 class NewsScreen extends StatefulWidget {
   NewsScreen({super.key});
@@ -15,16 +12,12 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
-  late List<Article> articles;
+  late List<Movie> movies;
 
-  @override
-  void initState() {
-    context.read<NewsBloc>().add(LoadNews());
-    super.initState();
-  }
-
-  final int itemsPerPage = 4; // Number of items per page
-  int currentPage = 0;
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,47 +25,26 @@ class _NewsScreenState extends State<NewsScreen> {
       body: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
           if (state is NewsLoaded) {
-            articles = state.articles.articles;
-            int pageArticlesStart = currentPage * itemsPerPage;
-            int pageArticlesEnd =
-                (pageArticlesStart + itemsPerPage).clamp(0, articles.length);
-            List<Article> pageArticles =
-                articles.sublist(pageArticlesStart, pageArticlesEnd);
-
+            movies = state.movies;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: articles.isEmpty
+                  child: movies.isEmpty
                       ? const SizedBox()
                       : ListView.builder(
-                          itemCount: pageArticles.length,
-                          itemBuilder: (context, index) =>
-                              ArticleView(article: pageArticles[index])),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                        onPressed: currentPage > 0
-                            ? () => setState(() => currentPage--)
-                            : null,
-                        icon: const Icon(Icons.chevron_left,
-                            color: MyColors.onBackgroundIcon)),
-                    Text(
-                      "${currentPage + 1} / ${articles.length ~/ itemsPerPage + 1} ",
-                      style: MyTextStyle.onBackgroundBold24,
-                    ),
-                    IconButton(
-                      onPressed: pageArticlesEnd < articles.length
-                          ? () => setState(() => currentPage++)
-                          : null,
-                      icon: const Icon(
-                        Icons.chevron_right,
-                        color: MyColors.onBackgroundIcon,
-                      ),
-                    )
-                  ],
+                          controller: context.read<NewsBloc>().scrollController,
+                          itemCount: movies.length,
+                          itemBuilder: (context, index) {
+                            if (index == movies.length - 1) {
+                              return const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child:
+                                    Center(child: CircularProgressIndicator()),
+                              );
+                            }
+                            return ArticleView(movie: movies[index]);
+                          }),
                 ),
               ],
             );

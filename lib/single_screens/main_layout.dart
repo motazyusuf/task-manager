@@ -22,7 +22,7 @@ class _MainLayoutState extends State<MainLayout> {
       child: TasksScreen(),
     ),
     BlocProvider(
-      create: (context) => NewsBloc(),
+      create: (context) => NewsBloc()..add(GetNewsEvent()),
       child: NewsScreen(),
     )
   ];
