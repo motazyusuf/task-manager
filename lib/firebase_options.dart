@@ -41,48 +41,53 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAq0hVmgh6xlqReWB33mSSeVBbzi5Q7C9w',
-    appId: '1:534967218159:web:617a5fda8df7276fe2901a',
-    messagingSenderId: '534967218159',
-    projectId: 'mytask-manager-dd01d',
-    authDomain: 'mytask-manager-dd01d.firebaseapp.com',
-    storageBucket: 'mytask-manager-dd01d.firebasestorage.app',
-    measurementId: 'G-25EKPHB043',
+    apiKey: 'AIzaSyAGYuxB_G91TnDmSSMpm9N_YzYN2V4CTLw',
+    appId: '1:859774840954:web:77c2e14b7b9d911d5a4bc3',
+    messagingSenderId: '859774840954',
+    projectId: 'task-manager-e8262',
+    authDomain: 'task-manager-e8262.firebaseapp.com',
+    storageBucket: 'task-manager-e8262.firebasestorage.app',
+    measurementId: 'G-6VTF5W4K9S',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyATYqRGh-LGcwJ82V4aLGxuRw77b247_C8',
-    appId: '1:534967218159:android:39c6606f1aadc25ee2901a',
-    messagingSenderId: '534967218159',
-    projectId: 'mytask-manager-dd01d',
-    storageBucket: 'mytask-manager-dd01d.firebasestorage.app',
+    apiKey: 'AIzaSyAnx9Kx4W-10YUU-4pSFrUo77b6z7-o7B0',
+    appId: '1:859774840954:android:81dfab7ad2f9876a5a4bc3',
+    messagingSenderId: '859774840954',
+    projectId: 'task-manager-e8262',
+    storageBucket: 'task-manager-e8262.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDonukdF71RGavD20xnwOGsKUrx1EBjWbc',
-    appId: '1:534967218159:ios:ab9bc1c5013347ace2901a',
-    messagingSenderId: '534967218159',
-    projectId: 'mytask-manager-dd01d',
-    storageBucket: 'mytask-manager-dd01d.firebasestorage.app',
+    apiKey: 'AIzaSyAgJpXCrGz2w2ydSC6ZvjoEUdUq9L0R6G4',
+    appId: '1:859774840954:ios:98d8a20aec9487695a4bc3',
+    messagingSenderId: '859774840954',
+    projectId: 'task-manager-e8262',
+    storageBucket: 'task-manager-e8262.firebasestorage.app',
+    androidClientId:
+        '859774840954-qsej1n291h9vuh33u2bkdd5jmumg73sr.apps.googleusercontent.com',
     iosBundleId: 'com.example.taskManager',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDonukdF71RGavD20xnwOGsKUrx1EBjWbc',
-    appId: '1:534967218159:ios:ab9bc1c5013347ace2901a',
-    messagingSenderId: '534967218159',
-    projectId: 'mytask-manager-dd01d',
-    storageBucket: 'mytask-manager-dd01d.firebasestorage.app',
+    apiKey: 'AIzaSyAgJpXCrGz2w2ydSC6ZvjoEUdUq9L0R6G4',
+    appId: '1:859774840954:ios:98d8a20aec9487695a4bc3',
+    messagingSenderId: '859774840954',
+    projectId: 'task-manager-e8262',
+    storageBucket: 'task-manager-e8262.firebasestorage.app',
+    androidClientId:
+        '859774840954-qsej1n291h9vuh33u2bkdd5jmumg73sr.apps.googleusercontent.com',
     iosBundleId: 'com.example.taskManager',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAq0hVmgh6xlqReWB33mSSeVBbzi5Q7C9w',
-    appId: '1:534967218159:web:a81178cb410bb837e2901a',
-    messagingSenderId: '534967218159',
-    projectId: 'mytask-manager-dd01d',
-    authDomain: 'mytask-manager-dd01d.firebaseapp.com',
-    storageBucket: 'mytask-manager-dd01d.firebasestorage.app',
-    measurementId: 'G-6H6PM4PJM7',
+    apiKey: 'AIzaSyAGYuxB_G91TnDmSSMpm9N_YzYN2V4CTLw',
+    appId: '1:859774840954:web:3ef97241db17c7215a4bc3',
+    messagingSenderId: '859774840954',
+    projectId: 'task-manager-e8262',
+    authDomain: 'task-manager-e8262.firebaseapp.com',
+    storageBucket: 'task-manager-e8262.firebasestorage.app',
+    measurementId: 'G-0G2BQ4ZRJH',
   );
+
 }
