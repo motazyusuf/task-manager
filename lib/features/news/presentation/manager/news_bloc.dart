@@ -10,7 +10,8 @@ part 'news_state.dart';
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsRepository newsRepository = NewsRepository();
   final ScrollController scrollController = ScrollController();
-  int page = 1;
+  late bool loading;
+  int page = 499;
 
   NewsBloc() : super(NewsInitial()) {
     scrollController.addListener(() {
@@ -28,19 +29,18 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     }
 
     Future<void> onLoadMore(event, emit) async {
+      loading = true;
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
         page++;
-        print("I am here current page is $page");
         var response = await newsRepository.getNews(page);
         response.fold((ifLeft) {
           debugPrint(ifLeft.errorMessage);
           emit(NewsFailed(ifLeft.errorMessage));
         }, (ifRight) {
-          if (state is NewsLoaded) {
-            final currentState = state as NewsLoaded;
-            emit(NewsLoaded([...currentState.movies, ...ifRight]));
-          }
+          final currentState = state as NewsLoaded;
+          emit(NewsLoaded([...currentState.movies, ...ifRight]));
+          loading = false;
         });
       }
     }

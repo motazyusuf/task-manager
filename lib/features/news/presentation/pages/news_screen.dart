@@ -36,7 +36,8 @@ class _NewsScreenState extends State<NewsScreen> {
                           controller: context.read<NewsBloc>().scrollController,
                           itemCount: movies.length,
                           itemBuilder: (context, index) {
-                            if (index == movies.length - 1) {
+                            if (index == movies.length - 1 &&
+                                context.read<NewsBloc>().loading) {
                               return const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child:

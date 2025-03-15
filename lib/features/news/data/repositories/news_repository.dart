@@ -20,15 +20,17 @@ class NewsRepository {
           ));
 
       if (response.statusCode == 200) {
-        print('200');
         return Right((response.data['results'] as List)
             .map((movie) => Movie.fromJson(movie))
             .toList());
       } else {
-        print(400);
         return const Right([]);
       }
     } on DioException catch (e) {
+      if (e.response!.statusCode == 400) {
+        return const Right([]);
+      }
+
       return Left(Failure(errorMessage: e.message!));
     }
   }

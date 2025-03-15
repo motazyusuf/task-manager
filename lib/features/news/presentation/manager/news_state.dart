@@ -17,5 +17,4 @@ final class NewsFailed extends NewsState {
   NewsFailed(this.message);
 }
 
-
-
+final class NewsLoading extends NewsState {}
