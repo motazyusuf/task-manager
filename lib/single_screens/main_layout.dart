@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/core/configs/theme/app_colors.dart';
@@ -27,14 +28,28 @@ class _MainLayoutState extends State<MainLayout> {
     )
   ];
 
+  bool isEnglish = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: MyColors.primary,
-        title:
-            Text(_currentIndex == 0 ? MyStrings.myTaskManager : MyStrings.news),
+        title: Text(_currentIndex == 0
+            ? MyStrings.myTaskManager.tr()
+            : MyStrings.news.tr()),
+        actions: [
+          IconButton(
+              onPressed: () {
+                print("Pressed");
+                isEnglish = !isEnglish;
+                isEnglish
+                    ? context.setLocale(const Locale('en'))
+                    : context.setLocale(const Locale('ar'));
+              },
+              icon: const Icon(Icons.language))
+        ],
       ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -47,14 +62,14 @@ class _MainLayoutState extends State<MainLayout> {
             _currentIndex = index;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.task),
-            label: MyStrings.tasks,
+            label: MyStrings.tasks.tr(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.article),
-            label: MyStrings.news,
+            label: MyStrings.news.tr(),
           ),
         ],
       ),

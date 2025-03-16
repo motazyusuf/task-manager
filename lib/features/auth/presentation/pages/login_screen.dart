@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/features/auth/presentation/manager/auth_bloc.dart';
@@ -25,14 +26,14 @@ class LoginScreen extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  MyStrings.signIn,
+                  MyStrings.signIn.tr(),
                   style: MyTextStyle.onBackgroundBoldest40,
                 ),
               ),
               verticalSpace(20),
-              const AdditionalLoginMethod(
+              AdditionalLoginMethod(
                 iconPath: MyAssets.googleIcon,
-                methodName: MyStrings.continueWithGoogle,
+                methodName: MyStrings.continueWithGoogle.tr(),
               )
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +31,7 @@ class UpdateTaskBottomSheet extends StatelessWidget {
           TextField(
             controller: descriptionController,
             decoration:
-                const InputDecoration(labelText: MyStrings.editTaskDescription),
+                InputDecoration(labelText: MyStrings.editTaskDescription.tr()),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
@@ -39,7 +40,7 @@ class UpdateTaskBottomSheet extends StatelessWidget {
               parentContext.read<TaskBloc>().add(AddTask(task));
               Navigator.pop(context);
             },
-            child: const Text(MyStrings.ok),
+            child: Text(MyStrings.ok.tr()),
           ),
         ],
       ),

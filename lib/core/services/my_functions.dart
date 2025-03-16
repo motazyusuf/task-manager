@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -158,6 +159,7 @@ abstract class MyFunctions {
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
+    await EasyLocalization.ensureInitialized();
     final appDocumentDir = await getApplicationDocumentsDirectory();
     Hive.init(appDocumentDir.path);
     await FirebaseApi().fcmNotifications();
@@ -166,6 +168,7 @@ abstract class MyFunctions {
     await Hive.openBox('settings');
     await Hive.openBox<TaskModel>("User");
   }
+
   static Future<void> backgroundHandler(RemoteMessage message) async {
     Firebase.initializeApp();
 

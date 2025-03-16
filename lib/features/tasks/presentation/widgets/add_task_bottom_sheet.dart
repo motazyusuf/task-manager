@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,13 +29,13 @@ class AddTaskBottomSheet extends StatelessWidget {
           verticalSpace(16),
           TextField(
             controller: nameController,
-            decoration: const InputDecoration(labelText: MyStrings.taskName),
+            decoration: InputDecoration(labelText: MyStrings.taskName.tr()),
           ),
           verticalSpace(8),
           TextField(
             controller: descriptionController,
             decoration:
-                const InputDecoration(labelText: MyStrings.taskDescription),
+                InputDecoration(labelText: MyStrings.taskDescription.tr()),
           ),
           verticalSpace(16),
           ElevatedButton(
@@ -45,7 +46,7 @@ class AddTaskBottomSheet extends StatelessWidget {
               parentContext.read<TaskBloc>().add(AddTask(task));
               Navigator.pop(context);
             },
-            child: const Text(MyStrings.ok),
+            child: Text(MyStrings.ok.tr()),
           ),
         ],
       ),
